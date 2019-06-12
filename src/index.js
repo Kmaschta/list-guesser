@@ -1,6 +1,6 @@
 /* eslint react/jsx-key: off */
 import React from 'react';
-import { Admin, Resource } from 'react-admin'; // eslint-disable-line import/no-unresolved
+import { Admin, Resource, ListGuesser } from 'react-admin'; // eslint-disable-line import/no-unresolved
 import { render } from 'react-dom';
 import { Route } from 'react-router';
 import { reducer as tree } from 'ra-tree-ui-materialui';
@@ -23,21 +23,9 @@ render(
         title="Example Admin"
         locale="en"
         customReducers={{ tree }}
-        customRoutes={[
-            <Route
-                exact
-                path="/custom"
-                component={CustomRouteNoLayout}
-                noLayout
-            />,
-            <Route exact path="/custom2" component={CustomRouteLayout} />,
-        ]}
     >
         {permissions => [
-            <Resource name="posts" {...posts} />,
-            <Resource name="comments" {...comments} />,
-            permissions ? <Resource name="users" {...users} /> : null,
-            <Resource name="tags" {...tags} />,
+            <Resource name="books" list={ListGuesser} />,
         ]}
     </Admin>,
     document.getElementById('root')

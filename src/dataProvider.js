@@ -1,24 +1,16 @@
-import jsonRestProvider from 'ra-data-fakerest';
+import getApiSchema from './getApiSchema';
 
-import data from './data';
-import addUploadFeature from './addUploadFeature';
+import books from './data/books';
 
-const dataProvider = jsonRestProvider(data, true);
-const uploadCapableDataProvider = addUploadFeature(dataProvider);
-const sometimesFailsDataProvider = (type, resource, params) =>
-    new Promise((resolve, reject) => {
-        // add rejection by type or resource here for tests, e.g.
-        // if (type === 'DELETE' && resource === 'posts') {
-        //     return reject('deletion error');
-        // }
-        return resolve(uploadCapableDataProvider(type, resource, params));
-    });
-const delayedDataProvider = (type, resource, params) =>
-    new Promise(resolve =>
-        setTimeout(
-            () => resolve(sometimesFailsDataProvider(type, resource, params)),
-            1000
-        )
-    );
+const dataProvider = (type, resource, params) => {
+    console.warn('data provider', resource, params)
+    if (type === 'INTROSPECT') {
+        return getApiSchema();
+    }
 
-export default delayedDataProvider;
+    if (type === 'GET_LIST') {
+        return books;
+    }
+}
+
+export default dataProvider;
