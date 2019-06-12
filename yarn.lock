@@ -7842,6 +7842,14 @@ ra-data-fakerest@^2.0.0:
   dependencies:
     fakerest "~2.1.0"
 
+ra-data-simple-rest@^2.9.2:
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/ra-data-simple-rest/-/ra-data-simple-rest-2.9.2.tgz#e2e68c5f4feec452371cd764aad4691c9430d310"
+  integrity sha512-SA255u49xYzY4oVr5BtFDaT24sRBBy9cm7Olb34LoCoJlluw2g+6/Z0mR4c+gYW4Tl2b3k+3Xfts+PLsmtK+fg==
+  dependencies:
+    query-string "~5.1.1"
+    ra-core "^2.9.2"
+
 ra-input-rich-text@^2.0.0:
   version "2.9.2"
   resolved "https://registry.yarnpkg.com/ra-input-rich-text/-/ra-input-rich-text-2.9.2.tgz#620779637bf915c2573fa62807bcdc3579340cbe"

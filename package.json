@@ -42,6 +42,7 @@
         "@material-ui/icons": "~1.1.1",
         "api-doc-parser": "^0.2.1",
         "ra-data-fakerest": "^2.0.0",
+        "ra-data-simple-rest": "^2.9.2",
         "ra-input-rich-text": "^2.0.0",
         "ra-language-english": "^2.0.0",
         "ra-language-french": "^2.0.0",
