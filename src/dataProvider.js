@@ -5,11 +5,11 @@ import books from './data/books';
 const dataProvider = (type, resource, params) => {
     console.warn('data provider', resource, params)
     if (type === 'INTROSPECT') {
-        return getApiSchema();
+        return Promise.resolve(getApiSchema());
     }
 
     if (type === 'GET_LIST') {
-        return books;
+        return Promise.resolve(books);
     }
 }
 
