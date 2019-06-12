@@ -8,6 +8,7 @@ import {
 } from 'ra-core';
 import { EditView } from 'react-admin';
 import editFieldTypes from './editFieldTypes'
+import inputFactory from './inputFactory';
 import { documentation } from './getApiSchema';
 
 const styles = {
@@ -21,8 +22,12 @@ export class EditViewGuesser extends Component {
     componentDidUpdate() {
         const { record, resource } = this.props;
         if (record && !this.state.inferredChild) {
+            console.log(this.props);
+            //documentation().then(console.log);
+            const fields = [];
+            const api = {};
 
-            documentation().then(console.log);
+            const inputs = fields.map(field => inputFactory(field, { api, resource }));
             const inferredElements = getElementsFromRecords(
                 [record],
                 editFieldTypes
