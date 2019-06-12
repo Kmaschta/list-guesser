@@ -1,14 +1,9 @@
 import React from 'react';
-import SimpleForm from '../form/SimpleForm';
-import SimpleFormIterator from '../form/SimpleFormIterator';
-import ArrayInput from '../input/ArrayInput';
-import BooleanInput from '../input/BooleanInput';
-import DateInput from '../input/DateInput';
-import NumberInput from '../input/NumberInput';
-import ReferenceInput from '../input/ReferenceInput';
-import ReferenceArrayInput from '../input/ReferenceArrayInput';
-import SelectInput from '../input/SelectInput';
-import TextInput from '../input/TextInput';
+import {
+    SimpleForm, SimpleFormIterator,
+    ArrayInput, BooleanInput, DateInput, NumberInput,
+    ReferenceInput, ReferenceArrayInput, SelectInput, TextInput
+} from 'react-admin';
 
 export default {
     form: {
@@ -26,7 +21,7 @@ ${children.map(child => `            ${child.getRepresentation()}`).join('\n')}
         ),
         representation: (props, children) =>
             `<ArrayInput source="${
-                props.source
+            props.source
             }"><SimpleFormIterator>${children
                 .map(child => child.getRepresentation())
                 .join('\n')}</SimpleFormIterator></ArrayInput>`,
@@ -55,7 +50,7 @@ ${children.map(child => `            ${child.getRepresentation()}`).join('\n')}
         component: ReferenceInput,
         representation: (props, children) =>
             `<ReferenceInput source="${props.source}" reference="${
-                props.reference
+            props.reference
             }">${children.getRepresentation()}</ReferenceInput>`,
     },
     referenceChild: {
@@ -66,7 +61,7 @@ ${children.map(child => `            ${child.getRepresentation()}`).join('\n')}
         component: ReferenceArrayInput,
         representation: props =>
             `<ReferenceArrayInput source="${props.source}" reference="${
-                props.reference
+            props.reference
             }"><TextInput source="id" /></ReferenceArrayInput>`,
     },
     referenceArrayChild: {

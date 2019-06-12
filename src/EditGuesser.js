@@ -7,7 +7,8 @@ import {
     getElementsFromRecords,
 } from 'ra-core';
 import { EditView } from 'react-admin';
-import editFieldTypes from './editFieldTypes';
+import editFieldTypes from './editFieldTypes'
+import { documentation } from './getApiSchema';
 
 const styles = {
 
@@ -20,6 +21,8 @@ export class EditViewGuesser extends Component {
     componentDidUpdate() {
         const { record, resource } = this.props;
         if (record && !this.state.inferredChild) {
+
+            documentation().then(console.log);
             const inferredElements = getElementsFromRecords(
                 [record],
                 editFieldTypes
