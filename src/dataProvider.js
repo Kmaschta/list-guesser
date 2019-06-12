@@ -1,5 +1,6 @@
 import hydraDataProvider from '@api-platform/admin/lib/hydra/hydraClient';
-import apiDocumentationParser from '@api-platform/api-doc-parser/lib/hydra/parseHydraDocumentation';
+
+import getApiSchema from './getApiSchema';
 
 const ENTRYPOINT = 'https://10.7.58.44:8443';
 

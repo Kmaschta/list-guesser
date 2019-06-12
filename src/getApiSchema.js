@@ -1,4 +1,4 @@
-import hydraDataProvider from '@api-platform/admin/lib/hydra/hydraClient';
+import apiDocumentationParser from '@api-platform/api-doc-parser/lib/hydra/parseHydraDocumentation';
 
 export default (entrypoint) => apiDocumentationParser(entrypoint)
     .then(({ api, customRoutes = [] }) => {
@@ -35,4 +35,4 @@ export default (entrypoint) => apiDocumentationParser(entrypoint)
             hasError: true,
             loaded: true,
         };
-    }
+    });
