@@ -1,16 +1,18 @@
-import getApiSchema from './getApiSchema';
+import hydraDataProvider from '@api-platform/admin/lib/hydra/hydraClient';
+import apiDocumentationParser from '@api-platform/api-doc-parser/lib/hydra/parseHydraDocumentation';
 
-import books from './data/books';
+const ENTRYPOINT = 'https://10.7.58.44:8443';
 
-const dataProvider = (type, resource, params) => {
-    console.warn('data provider', resource, params)
+const dataProvider = hydraDataProvider({ entrypoint: ENTRYPOINT });
+
+const enhancedDataProvider = (type, resource, params) => {
+    console.warn('data provider', type, resource, params);
+
     if (type === 'INTROSPECT') {
-        return Promise.resolve(getApiSchema());
+        return getApiSchema(ENTRYPOINT);
     }
 
-    if (type === 'GET_LIST') {
-        return Promise.resolve(books);
-    }
+    return dataProvider(type, resource, params)
 }
 
-export default dataProvider;
+export default enhancedDataProvider;
