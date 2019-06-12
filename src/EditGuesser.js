@@ -6,10 +6,9 @@ import {
     InferredElement,
     getElementsFromRecords,
 } from 'ra-core';
-import { EditView } from 'react-admin';
+import { Query, EditView } from 'react-admin';
 import editFieldTypes from './editFieldTypes'
 import inputFactory from './inputFactory';
-import { documentation } from './getApiSchema';
 
 const styles = {
 
@@ -20,12 +19,13 @@ export class EditViewGuesser extends Component {
         inferredChild: null,
     };
     componentDidUpdate() {
-        const { record, resource } = this.props;
+
+        console.log('EditViewGuesser');
+        const { api, record, resource } = this.props;
         if (record && !this.state.inferredChild) {
             console.log(this.props);
-            //documentation().then(console.log);
+
             const fields = [];
-            const api = {};
 
             const inputs = fields.map(field => inputFactory(field, { api, resource }));
             const inferredElements = getElementsFromRecords(
@@ -63,9 +63,27 @@ ${inferredChild.getRepresentation()}
 EditViewGuesser.propTypes = EditView.propTypes;
 
 const EditGuesser = props => (
-    <EditController {...props}>
-        {controllerProps => <EditViewGuesser {...props} {...controllerProps} />}
-    </EditController>
+    <Query type="INTROSPECT" resource={props.ressource}>
+        {
+            ({ data, loading, error }) => {
+                if (loading) {
+                    return <div>LOADING</div>;
+                }
+
+                if (error) {
+                    console.log(error);
+
+                    return <div>ERROR</div>
+                };
+
+                return (
+                    <EditController {...props}>
+                        {controllerProps => <EditViewGuesser api={data} {...props} {...controllerProps} />}
+                    </EditController>
+                );
+            }
+        }
+    </Query>
 );
 
 export default withStyles(styles)(EditGuesser);
