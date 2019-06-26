@@ -19,20 +19,20 @@ export default (entrypoint) => apiDocumentationParser(entrypoint)
             };
         });
     },
-    data => {
-        if (data instanceof Error) {
-            console.error(data);
+        data => {
+            if (data instanceof Error) {
+                console.error(data);
+
+                return {
+                    hasError: true,
+                    loaded: true,
+                };
+            }
 
             return {
+                api: data.api,
+                customRoutes: data.customRoutes,
                 hasError: true,
                 loaded: true,
             };
-        }
-
-        return {
-            api: data.api,
-            customRoutes: data.customRoutes,
-            hasError: true,
-            loaded: true,
-        };
-    });
+        });

@@ -13,7 +13,7 @@ const enhancedDataProvider = (type, resource, params) => {
         return getApiSchema(ENTRYPOINT);
     }
 
-    if (type === 'GET_LIST') {
+    if (type === 'GET_LIST' || type === 'GET_MANY') {
         return dataProvider(type, resource, params).then(({ data, total }) => ({
             data: data ? data.map(item => ({ ...item, id: item['@id'] })) : data,
             total
